@@ -1,8 +1,646 @@
 <!DOCTYPE html>
-<html>
-	<head></head>
-	<body>
-		<h1>Hello user</h1>
-		<h2>this file must be commited to github</h2>
-	</body>
+<html lang="ru" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub — Where the world builds software</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        github: {
+                            bg: '#0d1116',
+                            card: '#161b22',
+                            border: '#30363d',
+                            green: '#238636',
+                            greenHover: '#2ea043',
+                            purple: '#8957e5',
+                            textPrimary: '#f0f6fc',
+                            textSecondary: '#8b949e',
+                            accent: '#58a6ff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'monospace']
+                    },
+                    boxShadow: {
+                        'glow': '0 0 30px -5px rgba(35, 134, 54, 0.4)',
+                        'glow-purple': '0 0 30px -5px rgba(137, 87, 229, 0.4)',
+                        'card': '0 8px 24px rgba(0, 0, 0, 0.4)'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom glowing background effect and grid lines */
+        body {
+            background-color: #0d1116;
+            color: #f0f6fc;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .bg-grid {
+            background-image: radial-gradient(rgba(48, 54, 61, 0.4) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1116;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b949e;
+        }
+    </style>
+</head>
+<body class="bg-github-bg text-github-textPrimary bg-grid antialiased selection:bg-github-green selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-github-bg/80 border-b border-github-border transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo & Nav Links -->
+            <div class="flex items-center space-x-8">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <i class="fab fa-github text-3xl text-white group-hover:scale-110 transition-transform"></i>
+                    <span class="font-bold text-lg tracking-tight">GitHub</span>
+                </a>
+                <nav class="hidden md:flex space-x-6 text-sm font-medium text-github-textSecondary">
+                    <a href="#features" class="hover:text-github-textPrimary transition-colors">Features</a>
+                    <a href="#trending" class="hover:text-github-textPrimary transition-colors">Explore</a>
+                    <a href="#simulator" class="hover:text-github-textPrimary transition-colors">Contributions</a>
+                    <a href="#stats" class="hover:text-github-textPrimary transition-colors">Stats</a>
+                </nav>
+            </div>
+            <!-- Auth Buttons & Mobile Menu Toggle -->
+            <div class="flex items-center space-x-4">
+                <a href="#signin" class="hidden sm:inline-block text-sm font-medium text-github-textSecondary hover:text-github-textPrimary px-3 py-1.5 transition-colors">Sign in</a>
+                <a href="#signup" class="bg-github-green hover:bg-github-greenHover text-white text-sm font-semibold px-4 py-2 rounded-md shadow-md transition-all transform hover:-translate-y-0.5">Sign up</a>
+                <button id="mobile-menu-btn" class="md:hidden text-github-textSecondary hover:text-white focus:outline-none p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-github-card border-b border-github-border px-4 pt-2 pb-4 space-y-2">
+            <a href="#features" class="block py-2 text-github-textSecondary hover:text-white">Features</a>
+            <a href="#trending" class="block py-2 text-github-textSecondary hover:text-white">Explore</a>
+            <a href="#simulator" class="block py-2 text-github-textSecondary hover:text-white">Contributions</a>
+            <a href="#stats" class="block py-2 text-github-textSecondary hover:text-white">Stats</a>
+            <a href="#signin" class="block py-2 text-github-textSecondary hover:text-white border-t border-github-border pt-3">Sign in</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-32 overflow-hidden">
+        <!-- Ambient Background Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-github-green/20 to-github-purple/20 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-github-card border border-github-border px-3.5 py-1.5 rounded-full text-xs font-medium text-github-accent shadow-sm animate-pulse">
+                        <span class="flex h-2 w-2 rounded-full bg-github-accent"></span>
+                        <span>GitHub Universe 2026 Live Now</span>
+                        <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                        Where the world <span class="bg-gradient-to-r from-github-green via-github-accent to-github-purple bg-clip-text text-transparent">builds software</span>
+                    </h1>
+                    <p class="text-lg text-github-textSecondary max-w-xl mx-auto lg:mx-0">
+                        The complete developer platform to build, scale, and secure your software. Trusted by over 100 million developers and leading enterprises worldwide.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#signup" class="w-full sm:w-auto bg-github-green hover:bg-github-greenHover text-white font-semibold px-8 py-3.5 rounded-lg shadow-glow transition-all transform hover:-translate-y-0.5 text-center flex items-center justify-center space-x-2">
+                            <span>Get started with GitHub</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#trending" class="w-full sm:w-auto bg-github-card hover:bg-github-border border border-github-border text-github-textPrimary font-semibold px-8 py-3.5 rounded-lg transition-all text-center flex items-center justify-center space-x-2">
+                            <i class="fab fa-github"></i>
+                            <span>Explore Repositories</span>
+                        </a>
+                    </div>
+                    <!-- Micro Stats -->
+                    <div class="pt-6 flex items-center justify-center lg:justify-start space-x-8 text-xs text-github-textSecondary">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-github-green"></i>
+                            <span>Free for individuals</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-github-green"></i>
+                            <span>No credit card required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Interactive Code Terminal Simulator -->
+                <div class="lg:col-span-6">
+                    <div class="bg-github-card border border-github-border rounded-xl shadow-card overflow-hidden">
+                        <!-- Window Header -->
+                        <div class="bg-[#21262d] px-4 py-3 border-b border-github-border flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                                <span class="ml-2 text-xs font-mono text-github-textSecondary">ai-copilot-assistant.js</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-github-textSecondary text-xs">
+                                <span class="px-2 py-0.5 rounded bg-github-border text-white">JavaScript</span>
+                                <button id="copy-code-btn" title="Copy code" class="hover:text-white transition-colors">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Terminal Code Body -->
+                        <div class="p-6 font-mono text-xs sm:text-sm overflow-x-auto leading-relaxed text-github-textPrimary">
+                            <pre><code><span class="text-github-purple">import</span> { GitHubCopilot } <span class="text-github-purple">from</span> <span class="text-[#a5d6ff]">'@github/copilot'</span>;
+
+<span class="text-github-textSecondary">// Initialize AI Pair Programmer</span>
+<span class="text-github-purple">const</span> <span class="text-github-accent">assistant</span> = <span class="text-github-purple">new</span> <span class="text-yellow-300">GitHubCopilot</span>({
+    model: <span class="text-[#a5d6ff]">'gpt-4o-github'</span>,
+    securityScan: <span class="text-github-purple">true</span>,
+    autocompletion: <span class="text-github-purple">true</span>
+});
+
+<span class="text-github-textSecondary" id="typing-comment">// 🚀 Ready to boost your coding speed by 55%</span>
+<span class="text-github-purple">async function</span> <span class="text-blue-400">buildFutureSoftware</span>() {
+    <span class="text-github-purple">const</span> repo = <span class="text-github-purple">await</span> assistant.<span class="text-yellow-300">createRepository</span>({
+        name: <span class="text-[#a5d6ff]">'next-gen-app'</span>,
+        visibility: <span class="text-[#a5d6ff]">'public'</span>
+    });
+    <span class="text-github-purple">return</span> repo.<span class="text-yellow-300">deployToCloud</span>();
+}
+
+<span class="text-yellow-300">buildFutureSoftware</span>();</code></pre>
+                        </div>
+                        <!-- Terminal Footer status -->
+                        <div class="bg-[#11161d] px-4 py-2 border-t border-github-border flex items-center justify-between text-xs text-github-textSecondary">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2 h-2 rounded-full bg-github-green animate-ping"></span>
+                                <span>Copilot Active & Ready</span>
+                            </div>
+                            <span class="font-mono">UTF-8 4 tabs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-[#090d12] border-t border-github-border relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-github-accent font-bold">The Productivity Platform</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Tools built for the way you want to code</h3>
+                <p class="text-github-textSecondary text-base">Bring your team together with all the tools you need to build, test, and ship secure software.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1: AI Copilot -->
+                <div class="bg-github-card border border-github-border rounded-xl p-6 hover:border-github-purple transition-all group hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-lg bg-github-purple/10 flex items-center justify-center text-github-purple mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-wand-magic-sparkles text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">GitHub Copilot</h4>
+                    <p class="text-github-textSecondary text-sm leading-relaxed">
+                        Your AI pair programmer that helps you write code faster and smarter with contextual suggestions.
+                    </p>
+                </div>
+                <!-- Feature 2: Code Security -->
+                <div class="bg-github-card border border-github-border rounded-xl p-6 hover:border-github-green transition-all group hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-lg bg-github-green/10 flex items-center justify-center text-github-green mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shield-halved text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Advanced Security</h4>
+                    <p class="text-github-textSecondary text-sm leading-relaxed">
+                        Find and fix vulnerabilities before they reach production with automated secret scanning and Dependabot.
+                    </p>
+                </div>
+                <!-- Feature 3: CI/CD Actions -->
+                <div class="bg-github-card border border-github-border rounded-xl p-6 hover:border-github-accent transition-all group hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-lg bg-github-accent/10 flex items-center justify-center text-github-accent mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-bolt text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">GitHub Actions</h4>
+                    <p class="text-github-textSecondary text-sm leading-relaxed">
+                        Automate any workflow with CI/CD. Build, test, and deploy code right from your GitHub repository.
+                    </p>
+                </div>
+                <!-- Feature 4: Collaboration -->
+                <div class="bg-github-card border border-github-border rounded-xl p-6 hover:border-pink-500 transition-all group hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-500 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-users-viewfinder text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2">Collaboration</h4>
+                    <p class="text-github-textSecondary text-sm leading-relaxed">
+                        Review code seamlessly with pull requests, issue tracking, project boards, and team discussions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section: Contribution Simulator & Trending Repositories -->
+    <section id="simulator" class="py-24 border-t border-github-border relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs uppercase tracking-widest text-github-green font-bold">Activity & Community</h2>
+                    <h3 class="text-3xl font-extrabold tracking-tight mt-1">Explore what’s happening right now</h3>
+                </div>
+                <div class="mt-4 md:mt-0 flex space-x-2 bg-github-card p-1 rounded-lg border border-github-border">
+                    <button id="tab-trending" class="px-4 py-2 text-xs font-semibold rounded-md bg-github-green text-white transition-all">Trending Repos</button>
+                    <button id="tab-contrib" class="px-4 py-2 text-xs font-semibold rounded-md text-github-textSecondary hover:text-white transition-all">Contribution Grid</button>
+                </div>
+            </div>
+
+            <!-- View 1: Trending Repositories with Search & Filter -->
+            <div id="view-trending" class="space-y-6">
+                <!-- Search and Filter Bar -->
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-between bg-github-card p-4 rounded-xl border border-github-border">
+                    <div class="relative w-full sm:w-96">
+                        <i class="fas fa-search absolute left-3.5 top-3.5 text-github-textSecondary text-sm"></i>
+                        <input type="text" id="repo-search" placeholder="Search trending repositories..." class="w-full bg-github-bg border border-github-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-github-textPrimary focus:outline-none focus:border-github-accent transition-colors">
+                    </div>
+                    <div class="flex items-center space-x-3 w-full sm:w-auto">
+                        <select id="repo-filter" class="w-full sm:w-auto bg-github-bg border border-github-border rounded-lg px-4 py-2.5 text-sm text-github-textPrimary focus:outline-none focus:border-github-accent transition-colors">
+                            <option value="all">All Languages</option>
+                            <option value="JavaScript">JavaScript / TypeScript</option>
+                            <option value="Python">Python</option>
+                            <option value="Rust">Rust</option>
+                            <option value="Go">Go</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Repository Cards Grid -->
+                <div id="repos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards will be populated by JS -->
+                </div>
+            </div>
+
+            <!-- View 2: Contribution Heatmap Simulator (Hidden by default) -->
+            <div id="view-contrib" class="hidden bg-github-card border border-github-border rounded-2xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 pb-6 border-b border-github-border">
+                    <div>
+                        <h4 class="text-lg font-bold flex items-center space-x-2">
+                            <span>Contribution Activity Simulator</span>
+                            <span class="text-xs bg-github-green/20 text-github-green px-2 py-0.5 rounded-full">Interactive</span>
+                        </h4>
+                        <p class="text-xs text-github-textSecondary mt-1">Click any square on the grid below to simulate writing code and making commits!</p>
+                    </div>
+                    <div class="mt-4 sm:mt-0 text-right">
+                        <span id="total-commits-count" class="text-2xl font-extrabold text-github-green">1,482</span>
+                        <p class="text-xs text-github-textSecondary">Contributions in 2026</p>
+                    </div>
+                </div>
+
+                <!-- Grid Container -->
+                <div class="overflow-x-auto pb-4">
+                    <div id="contribution-grid" class="grid grid-flow-col grid-rows-7 gap-1.5 min-w-[700px]">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="flex items-center justify-between pt-4 border-t border-github-border text-xs text-github-textSecondary">
+                    <span>Learn how we count contributions</span>
+                    <div class="flex items-center space-x-2">
+                        <span>Less</span>
+                        <div class="w-3 h-3 rounded-sm bg-[#161b22] border border-github-border"></div>
+                        <div class="w-3 h-3 rounded-sm bg-[#0e4429]"></div>
+                        <div class="w-3 h-3 rounded-sm bg-[#006d32]"></div>
+                        <div class="w-3 h-3 rounded-sm bg-[#26a641]"></div>
+                        <div class="w-3 h-3 rounded-sm bg-[#39d353]"></div>
+                        <span>More</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Counters Section -->
+    <section id="stats" class="py-20 bg-[#090d12] border-t border-github-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="bg-github-card border border-github-border p-8 rounded-2xl shadow-sm">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-github-accent mb-2" data-target="100">0</div>
+                    <div class="text-sm font-semibold text-github-textSecondary uppercase tracking-wider">Million Developers</div>
+                </div>
+                <div class="bg-github-card border border-github-border p-8 rounded-2xl shadow-sm">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-github-green mb-2" data-target="420">0</div>
+                    <div class="text-sm font-semibold text-github-textSecondary uppercase tracking-wider">Million Repositories</div>
+                </div>
+                <div class="bg-github-card border border-github-border p-8 rounded-2xl shadow-sm">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-github-purple mb-2" data-target="90">0</div>
+                    <div class="text-sm font-semibold text-github-textSecondary uppercase tracking-wider">Percent Fortune 100</div>
+                </div>
+                <div class="bg-github-card border border-github-border p-8 rounded-2xl shadow-sm">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-pink-500 mb-2" data-target="4">0</div>
+                    <div class="text-sm font-semibold text-github-textSecondary uppercase tracking-wider">Trillion Lines of Code</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-github-bg border-t border-github-border py-12 text-sm text-github-textSecondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3 text-github-textPrimary font-bold text-lg">
+                        <i class="fab fa-github text-2xl"></i>
+                        <span>GitHub</span>
+                    </div>
+                    <p class="text-xs text-github-textSecondary max-w-sm">
+                        The complete developer platform to build, scale, and secure your software.
+                    </p>
+                    <div class="flex space-x-4 text-github-textSecondary text-lg">
+                        <a href="#" class="hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-github-textPrimary mb-3 text-xs uppercase tracking-wider">Product</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:underline">Features</a></li>
+                        <li><a href="#" class="hover:underline">Security</a></li>
+                        <li><a href="#" class="hover:underline">Team</a></li>
+                        <li><a href="#" class="hover:underline">Enterprise</a></li>
+                        <li><a href="#" class="hover:underline">Customer Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-github-textPrimary mb-3 text-xs uppercase tracking-wider">Platform</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:underline">Developer API</a></li>
+                        <li><a href="#" class="hover:underline">Partners</a></li>
+                        <li><a href="#" class="hover:underline">Atom</a></li>
+                        <li><a href="#" class="hover:underline">Electron</a></li>
+                        <li><a href="#" class="hover:underline">GitHub Desktop</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-github-textPrimary mb-3 text-xs uppercase tracking-wider">Support</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:underline">Docs</a></li>
+                        <li><a href="#" class="hover:underline">Community Forum</a></li>
+                        <li><a href="#" class="hover:underline">Professional Services</a></li>
+                        <li><a href="#" class="hover:underline">Skills</a></li>
+                        <li><a href="#" class="hover:underline">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-github-border pt-8 flex flex-col sm:flex-row items-center justify-between text-xs">
+                <div class="flex items-center space-x-4 mb-4 sm:mb-0">
+                    <span>&copy; 2026 GitHub, Inc.</span>
+                    <a href="#" class="hover:underline">Terms</a>
+                    <a href="#" class="hover:underline">Privacy</a>
+                    <a href="#" class="hover:underline">Security</a>
+                </div>
+                <div class="flex items-center space-x-2 text-github-textSecondary">
+                    <i class="fas fa-globe"></i>
+                    <span>English (United States)</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Copy Code Button Simulator
+            const copyBtn = document.getElementById('copy-code-btn');
+            copyBtn.addEventListener('click', () => {
+                const codeSnippet = `import { GitHubCopilot } from '@github/copilot';
+const assistant = new GitHubCopilot({ model: 'gpt-4o-github', securityScan: true });
+async function buildFutureSoftware() {
+    const repo = await assistant.createRepository({ name: 'next-gen-app' });
+    return repo.deployToCloud();
+}`;
+                // Fallback copy mechanism
+                const textarea = document.createElement('textarea');
+                textarea.value = codeSnippet;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    copyBtn.innerHTML = '<i class="fas fa-check text-github-green"></i>';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text', err);
+                }
+                document.body.removeChild(textarea);
+            });
+
+            // Trending Repositories Data
+            const repositories = [
+                {
+                    name: 'facebook / react',
+                    desc: 'The library for web and native user interfaces.',
+                    lang: 'JavaScript',
+                    stars: '226k',
+                    forks: '45.2k',
+                    color: '#f7df1e'
+                },
+                {
+                    name: 'torvalds / linux',
+                    desc: 'Linux kernel source tree.',
+                    lang: 'C',
+                    stars: '175k',
+                    forks: '52.1k',
+                    color: '#555555'
+                },
+                {
+                    name: 'tensorflow / tensorflow',
+                    desc: 'An Open Source Machine Learning Framework for Everyone.',
+                    lang: 'Python',
+                    stars: '182k',
+                    forks: '88.4k',
+                    color: '#3572A5'
+                },
+                {
+                    name: 'rust-lang / rust',
+                    desc: 'Empowering everyone to build reliable and efficient software.',
+                    lang: 'Rust',
+                    stars: '95k',
+                    forks: '12.3k',
+                    color: '#dea584'
+                },
+                {
+                    name: 'golang / go',
+                    desc: 'The Go programming language.',
+                    lang: 'Go',
+                    stars: '118k',
+                    forks: '17.2k',
+                    color: '#00ADD8'
+                },
+                {
+                    name: 'tailwindlabs / tailwindcss',
+                    desc: 'A utility-first CSS framework for rapid UI development.',
+                    lang: 'JavaScript',
+                    stars: '82k',
+                    forks: '4.1k',
+                    color: '#38bdf8'
+                }
+            ];
+
+            const reposGrid = document.getElementById('repos-grid');
+            const repoSearch = document.getElementById('repo-search');
+            const repoFilter = document.getElementById('repo-filter');
+
+            function renderRepos(filterText = '', langFilter = 'all') {
+                reposGrid.innerHTML = '';
+                const filtered = repositories.filter(repo => {
+                    const matchesSearch = repo.name.toLowerCase().includes(filterText.toLowerCase()) || repo.desc.toLowerCase().includes(filterText.toLowerCase());
+                    const matchesLang = langFilter === 'all' || repo.lang.includes(langFilter);
+                    return matchesSearch && matchesLang;
+                });
+
+                if (filtered.length === 0) {
+                    reposGrid.innerHTML = `<div class="col-span-full text-center py-12 text-github-textSecondary">No repositories found matching your query.</div>`;
+                    return;
+                }
+
+                filtered.forEach(repo => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-github-card border border-github-border rounded-xl p-6 hover:border-github-accent transition-all flex flex-col justify-between group';
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <a href="#" class="font-bold text-github-accent hover:underline flex items-center space-x-2">
+                                    <i class="far fa-bookmark text-xs"></i>
+                                    <span>${repo.name}</span>
+                                </a>
+                                <span class="text-xs bg-github-border px-2 py-0.5 rounded-full text-github-textSecondary">Public</span>
+                            </div>
+                            <p class="text-xs text-github-textSecondary mb-6 line-clamp-2">${repo.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-github-textSecondary pt-4 border-t border-github-border">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full" style="background-color: ${repo.color}"></span>
+                                <span>${repo.lang}</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1 hover:text-github-accent cursor-pointer"><i class="far fa-star"></i> <span>${repo.stars}</span></span>
+                                <span class="flex items-center space-x-1 hover:text-github-accent cursor-pointer"><i class="fas fa-code-branch"></i> <span>${repo.forks}</span></span>
+                            </div>
+                        </div>
+                    `;
+                    reposGrid.appendChild(card);
+                });
+            }
+
+            renderRepos();
+
+            repoSearch.addEventListener('input', (e) => {
+                renderRepos(e.target.value, repoFilter.value);
+            });
+
+            repoFilter.addEventListener('change', (e) => {
+                renderRepos(repoSearch.value, e.target.value);
+            });
+
+            // Tabs Switching for Trending vs Contributions
+            const tabTrending = document.getElementById('tab-trending');
+            const tabContrib = document.getElementById('tab-contrib');
+            const viewTrending = document.getElementById('view-trending');
+            const viewContrib = document.getElementById('view-contrib');
+
+            tabTrending.addEventListener('click', () => {
+                tabTrending.className = 'px-4 py-2 text-xs font-semibold rounded-md bg-github-green text-white transition-all';
+                tabContrib.className = 'px-4 py-2 text-xs font-semibold rounded-md text-github-textSecondary hover:text-white transition-all';
+                viewTrending.classList.remove('hidden');
+                viewContrib.classList.add('hidden');
+            });
+
+            tabContrib.addEventListener('click', () => {
+                tabContrib.className = 'px-4 py-2 text-xs font-semibold rounded-md bg-github-green text-white transition-all';
+                tabTrending.className = 'px-4 py-2 text-xs font-semibold rounded-md text-github-textSecondary hover:text-white transition-all';
+                viewContrib.classList.remove('hidden');
+                viewTrending.classList.add('hidden');
+            });
+
+            // Contribution Grid Simulator Generator
+            const contribGrid = document.getElementById('contribution-grid');
+            const totalCommitsCount = document.getElementById('total-commits-count');
+            let commitCount = 1482;
+
+            const levels = ['bg-[#161b22] border border-github-border', 'bg-[#0e4429]', 'bg-[#006d32]', 'bg-[#26a641]', 'bg-[#39d353]'];
+
+            // Generate 52 weeks * 7 days = 364 boxes
+            for (let i = 0; i < 364; i++) {
+                const cell = document.createElement('div');
+                // Random intensity initially
+                const randLevel = Math.random() > 0.6 ? Math.floor(Math.random() * 4) + 1 : 0;
+                cell.className = `w-3.5 h-3.5 rounded-sm cursor-pointer transition-transform hover:scale-125 ${levels[randLevel]}`;
+                cell.title = `Simulated commits on this day`;
+
+                cell.addEventListener('click', () => {
+                    // Cycle level on click
+                    cell.className = `w-3.5 h-3.5 rounded-sm cursor-pointer transition-transform hover:scale-125 bg-[#39d353] shadow-glow`;
+                    commitCount += Math.floor(Math.random() * 5) + 1;
+                    totalCommitsCount.textContent = commitCount.toLocaleString();
+                });
+
+                contribGrid.appendChild(cell);
+            }
+
+            // Animated Counters on Scroll
+            const counters = document.querySelectorAll('[data-target]');
+            let animated = false;
+
+            window.addEventListener('scroll', () => {
+                const statsSection = document.getElementById('stats');
+                const rect = statsSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight && !animated) {
+                    animated = true;
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        let current = 0;
+                        const increment = target / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target + (counter.parentElement.textContent.includes('Million') ? 'M+' : counter.parentElement.textContent.includes('Percent') ? '%' : 'T+');
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.ceil(current) + (counter.parentElement.textContent.includes('Million') ? 'M+' : counter.parentElement.textContent.includes('Percent') ? '%' : 'T+');
+                            }
+                        }, 30);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>
